@@ -23,7 +23,9 @@ struct PassPhoneView: View {
             
             Spacer()
             
-            NavigationLink {
+            NavigationLink() {
+                GuessView()
+                    .navigationBarBackButtonHidden(true)
             } label: {
                 Text("Ready")
                     .font(.title)
