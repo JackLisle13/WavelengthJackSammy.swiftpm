@@ -19,9 +19,9 @@ struct PassPhoneView: View {
                 .font(.largeTitle)
                 .bold()
                 .foregroundStyle(.cyan)
-                .frame(maxWidth: .infinity,  alignment: .center)
+                .multilineTextAlignment(.center)
+                .padding(.bottom, 20)
             
-            Spacer()
             
             NavigationLink() {
                 GuessView()
@@ -30,11 +30,13 @@ struct PassPhoneView: View {
                 Text("Ready")
                     .font(.title)
                     .foregroundColor(.white)
+                    .padding(10)
                     .background(.cyan)
                     .clipShape(RoundedRectangle(cornerRadius: 5))
                     .bold()
             }
 
+            Spacer()
             
         }
     }
