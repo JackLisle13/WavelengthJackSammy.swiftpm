@@ -15,7 +15,8 @@ struct ContentView: View {
                 Spacer()
                 
                 NavigationLink {
-                    //PlayView()
+                    PassPhoneView(playernum: 1)
+                        .navigationBarBackButtonHidden(true)
                 } label: {
                     Text("Start Game")
                         .font(.title)
