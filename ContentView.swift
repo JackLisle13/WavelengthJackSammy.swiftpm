@@ -1,12 +1,37 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var highscore = 0
+    
     var body: some View {
-        VStack {
-            
-            Text("Hello Wavelength")
-            
-            
+        NavigationStack {
+            VStack {
+                Text("Frequency")
+                    .font(.largeTitle)
+                    .bold()
+                    .foregroundStyle(.cyan)
+                
+                Spacer()
+                
+                NavigationLink {
+                    //PlayView()
+                } label: {
+                    Text("Start Game")
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .background(.cyan)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                        .bold()
+                }
+                
+                Spacer()
+                
+                Text("Highscore: \(highscore)")
+                    .font(.title)
+                    .foregroundStyle(.cyan)
+                    .bold()
+            }
         }
     }
 }
