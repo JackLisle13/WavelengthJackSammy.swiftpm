@@ -7,12 +7,9 @@
 
 import SwiftUI
 
-struct GuessView: View {
+struct RangeView: View {
     
     @State var playerNum: Int
-
-    @State var showRange = true
-    @State var guess = 0
     
     var body: some View {
         VStack {
@@ -55,5 +52,5 @@ struct GuessView: View {
 }
 
 #Preview {
-    GuessView(playerNum: 1)
+    RangeView(playerNum: 1)
 }

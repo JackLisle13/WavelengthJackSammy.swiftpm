@@ -24,7 +24,7 @@ struct PassPhoneView: View {
             
             
             NavigationLink() {
-                GuessView(playerNum: playernum)
+                RangeView(playerNum: playernum)
                     .navigationBarBackButtonHidden(true)
             } label: {
                 Text("Ready")
