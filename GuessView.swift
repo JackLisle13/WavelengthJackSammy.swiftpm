@@ -10,6 +10,9 @@ import SwiftUI
 struct GuessView: View {
     
     @State var playerNum: Int
+
+    @State var showRange = true
+    @State var guess = 0
     
     var body: some View {
         VStack {
@@ -43,6 +46,10 @@ struct GuessView: View {
             }
             
         }
+        
+       // Slider(value: $guess, in: 1...100)
+                
+        
         
     }
 }

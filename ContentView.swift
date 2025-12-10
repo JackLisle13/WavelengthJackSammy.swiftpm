@@ -7,12 +7,14 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                Spacer()
+                
                 Text("Frequency")
                     .font(.largeTitle)
                     .bold()
                     .foregroundStyle(.cyan)
+                    .padding(.bottom, 50)
                 
-                Spacer()
                 
                 NavigationLink {
                     PassPhoneView(playernum: 1)
@@ -21,6 +23,7 @@ struct ContentView: View {
                     Text("Start Game")
                         .font(.title)
                         .foregroundColor(.white)
+                        .padding(10)
                         .background(.cyan)
                         .clipShape(RoundedRectangle(cornerRadius: 5))
                         .bold()
