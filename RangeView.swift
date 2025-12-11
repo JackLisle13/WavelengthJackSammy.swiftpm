@@ -10,6 +10,14 @@ import SwiftUI
 struct RangeView: View {
     
     @State var playerNum: Int
+    @State var prompts = Prompts()
+    
+    @State var random: Double
+
+    init(playerNum: Int) {
+            _playerNum = State(initialValue: playerNum)
+           _random = State(initialValue: Double.random(in: 0...100))
+       } //looked up on chat for the random thing then it messed up smth else
     
     var body: some View {
         VStack {
@@ -18,17 +26,27 @@ struct RangeView: View {
                 .bold()
                 .foregroundStyle(.cyan)
             
-            ZStack {
-                Circle()
-                    .stroke(.cyan, lineWidth: 15)
-                
-                Rectangle()
-                    .foregroundStyle(.white)
-                    .offset(x: 0, y: 340)
-                
-                Rectangle()
-                    .foregroundStyle(.cyan)
-                    .frame(height: 16)
+            //START FOR OTHER GUESS THING, WE WILL GO BACK IF WE HAVE TIME
+//            ZStack {
+//                Circle()
+//                    .stroke(.cyan, lineWidth: 15)
+//                
+//                Rectangle()
+//                    .foregroundStyle(.white)
+//                    .offset(x: 0, y: 340)
+//                
+//                Rectangle()
+//                    .foregroundStyle(.cyan)
+//                    .frame(height: 16)
+//            }
+            
+            Slider(value: $random, in: 0...100)
+            
+
+            HStack{
+                Text("\(prompts.randomArray[0])")
+                Spacer()
+                Text("\(prompts.randomArray[1])")
             }
             
             Button() {
@@ -44,7 +62,6 @@ struct RangeView: View {
             
         }
         
-       // Slider(value: $guess, in: 1...100)
                 
         
         
