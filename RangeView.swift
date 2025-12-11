@@ -40,7 +40,7 @@ struct RangeView: View {
 //                    .frame(height: 16)
 //            }
             
-            Slider(value: $random, in: 0...100)
+            Slider(value: $random, in: 0...100, step: 1)
             
 
             HStack{
