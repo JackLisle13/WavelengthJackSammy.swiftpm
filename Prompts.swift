@@ -52,19 +52,19 @@ class Prompts{
         ["Tiny", "Huge"],
         ["Portable", "Stationary"]
     ]
+    var randomArray: [String]
     
     
-    init(prompts: [[String]]) {
-        self.prompts = prompts
+    init() {
+        randomArray = []
+        randomArray = randomPrompt()
     }
     
-    func randomPrompt() -> [String]{
+     func randomPrompt() -> [String]{
         let n = Int.random(in: 0..<prompts.count)
         
         return prompts[n]
     }
-    
-    
     
     
     
