@@ -39,9 +39,31 @@ struct RangeView: View {
 //                    .foregroundStyle(.cyan)
 //                    .frame(height: 16)
 //            }
-            
-            Slider(value: $random, in: 0...100)
-            
+            ZStack{
+                Slider(value: $random, in: 0...100)
+                    .disabled(true)
+                HStack{
+                    Rectangle()
+                        .frame(width: 30, height: 30)
+                        .foregroundStyle(Color(red: 0.8, green: 0.3, blue: 0.0, opacity: 0.4))
+                        .padding(-10)
+                    Rectangle()
+                        .frame(width: 30, height: 30)
+                        .foregroundStyle(Color(red: 0.8, green: 0.7, blue: 0.0, opacity: 0.4))
+                    Rectangle()
+                        .frame(width: 30, height: 30)
+                        .foregroundStyle(Color(red: 0.2, green: 0.8, blue: 0.1, opacity: 0.4))
+                        .padding(-10)
+                    Rectangle()
+                        .frame(width: 30, height: 30)
+                        .foregroundStyle(Color(red: 0.8, green: 0.7, blue: 0.0, opacity: 0.4))
+                    Rectangle()
+                        .frame(width: 30, height: 30)
+                        .foregroundStyle(Color(red: 0.8, green: 0.3, blue: 0.0, opacity: 0.4))
+                        .padding(-10)
+                    
+                }
+            }
 
             HStack{
                 Text("\(prompts.randomArray[0])")
