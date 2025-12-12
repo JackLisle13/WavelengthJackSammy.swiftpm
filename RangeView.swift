@@ -13,11 +13,21 @@ struct RangeView: View {
     @State var prompts = Prompts()
     
     @State var random: Double
+    @State var offset: Double
 
     init(playerNum: Int) {
-            _playerNum = State(initialValue: playerNum)
-           _random = State(initialValue: Double.random(in: 0...100))
-       } //looked up on chat for the random thing then it messed up smth else
+            _playerNum = State(initialValue: playerNum) //looked up
+        let rand = Double.random(in: 0...100)
+           _random = State(initialValue: rand)//looked up
+        if (rand >= 50.0){
+            _offset = State(initialValue: (UIScreen.main.bounds.width / 100) * (rand - 50))
+        }
+        else{
+            _offset = State(initialValue: (-1 *  ((UIScreen.main.bounds.width / 100) * (50 - rand))))
+                  
+        }
+        
+       }
     
     var body: some View {
         VStack {
@@ -40,8 +50,34 @@ struct RangeView: View {
 //                    .frame(height: 16)
 //            }
             
-            Slider(value: $random, in: 0...100, step: 1)
-            
+            ZStack{
+                         Slider(value: $random, in: 0...100)
+                             .disabled(true)
+                         HStack{
+                                 Rectangle()
+                                     .frame(width: 30, height: 30)
+                                     .foregroundStyle(Color(red: 0.8, green: 0.3, blue: 0.0, opacity: 0.4))
+                                     .padding(-10)
+                                 Rectangle()
+                                     .frame(width: 30, height: 30)
+                                     .foregroundStyle(Color(red: 0.8, green: 0.7, blue: 0.0, opacity: 0.4))
+                             Rectangle()
+                                 .frame(width: 30, height: 30)
+                                 .foregroundStyle(Color(red: 0.2, green: 0.8, blue: 0.1, opacity: 0.4))
+                                 .padding(-10)
+                             Rectangle()
+                                 .frame(width: 30, height: 30)
+                                 .foregroundStyle(Color(red: 0.8, green: 0.7, blue: 0.0, opacity: 0.4))
+                             Rectangle()
+                                 .frame(width: 30, height: 30)
+                                 .foregroundStyle(Color(red: 0.8, green: 0.3, blue: 0.0, opacity: 0.4))
+                                 .padding(-10)
+                         }
+                         .offset(x: offset)
+                
+                    
+                
+                     }
 
             HStack{
                 Text("\(prompts.randomArray[0])")
@@ -49,8 +85,8 @@ struct RangeView: View {
                 Text("\(prompts.randomArray[1])")
             }
             
-            Button() {
-                playerNum = 2
+            NavigationLink() {
+                GuessView(random: Int(random), playerNum: 2, prompts: prompts)
             } label: {
                 Text("Ready")
                     .font(.title)
