@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GuessView: View {
     
-    @State var random: Int
+    @State var random: Double
     
     @State var guess = 1.0
     
@@ -17,51 +17,54 @@ struct GuessView: View {
     
     @State var prompts: Prompts
     
+    @State var offset: Double
+    
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        VStack {
-            
-            Text("Player \(playerNum)")
-                .font(.largeTitle)
-                .bold()
-                .foregroundStyle(.cyan)
-            
-            Text("Your Guess: \(String(format: "%.0f", guess))")
-                .font(.title2)
-                .bold()
-                .foregroundStyle(.cyan)
-            
-            Slider(value: $guess, in: 1...100, step: 1)
-            
-            HStack {
-                Text("\(prompts.randomArray[0])")
+        NavigationStack {
+            VStack {
+                
+                Text("Player \(playerNum)")
+                    .font(.largeTitle)
                     .bold()
                     .foregroundStyle(.cyan)
-                    .font(.title2)
                 
-                Spacer()
+                Slider(value: $guess, in: 1...100, step: 1)
                 
-                Text("\(prompts.randomArray[1])")
-                    .bold()
-                    .foregroundStyle(.cyan)
-                    .font(.title2)
+                HStack {
+                    Text("\(prompts.randomArray[0])")
+                        .bold()
+                        .foregroundStyle(.cyan)
+                        .font(.title2)
+                    
+                    Spacer()
+                    
+                    Text("\(prompts.randomArray[1])")
+                        .bold()
+                        .foregroundStyle(.cyan)
+                        .font(.title2)
+                }
+                
+                NavigationLink() {
+                    PointsView(guess: guess, random: random, playerNum: playerNum, prompts: prompts, offset: offset)
+                        .navigationBarBackButtonHidden(true)
+                    
+                } label: {
+                    Text("Submit")
+                        .font(.title)
+                        .bold()
+                        .foregroundStyle(.white)
+                        .background(.cyan)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                }
+                
             }
-            
-            Button() {
-                
-            } label: {
-                Text("Submit")
-                    .font(.title2)
-                    .bold()
-                    .foregroundStyle(.white)
-                    .background(.cyan)
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
-            }
-            
         }
         
     }
 }
 
 #Preview {
-    GuessView(random: 74, playerNum: 2, prompts: Prompts())
+    GuessView(random: 74.0, playerNum: 2, prompts: Prompts(), offset: 0.0)
 }
