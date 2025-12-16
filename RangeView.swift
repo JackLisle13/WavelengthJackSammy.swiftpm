@@ -16,9 +16,12 @@ struct RangeView: View {
     
     @State var random: Double
     @State var offset: Double
+    @Binding var path: NavigationPath
 
-    init(playerNum: Int) {
+    init(playerNum: Int, path: Binding<NavigationPath>) {
             _playerNum = State(initialValue: playerNum) //looked up
+        _path = path
+
         let rand = Double.random(in: 0...100)
            _random = State(initialValue: rand)//looked up
         if (rand >= 50.0){
@@ -32,7 +35,6 @@ struct RangeView: View {
        }
     
     var body: some View {
-        NavigationStack {
             VStack {
                 Text("Player \(playerNum)")
                     .font(.largeTitle)
@@ -97,7 +99,7 @@ struct RangeView: View {
                 }
                 
                 NavigationLink() {
-                    GuessView(random: random, playerNum: 2, prompts: prompts, offset: offset, totalScore: $totalScore)
+                    GuessView(random: random, playerNum: 2, prompts: prompts, offset: offset, path: $path)
                         .navigationBarBackButtonHidden(true)
                 } label: {
                     Text("Ready")
@@ -113,9 +115,9 @@ struct RangeView: View {
             
         }
         
-    }
+    
 }
 
 #Preview {
-    RangeView(playerNum: 1)
+    RangeView(playerNum: 1, path: .constant(NavigationPath()))
 }
