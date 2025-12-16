@@ -100,19 +100,20 @@ struct PointsView: View {
     }
     
     func getPoints() {
-        if guess <= random + 30 && guess >= random - 30 {
-            points += 3
-        }
-        else {
-            if guess <= random + 60 && guess >= random - 60 {
-                points += 2
-            }
-            else {
-                if guess <= random + 90 && guess >= random - 90 {
-                    points += 1
+        if guess <= random + 20 && guess >= random - 20 {
+            if guess <= random + 10 && guess >= random - 10 {
+                if guess <= random + 5 && guess >= random - 5 {
+                    points += 3
+                }
+                else {
+                    points += 2
                 }
             }
+            else {
+                points += 1
+            }
         }
+
     }
     
 }
