@@ -21,6 +21,10 @@ struct PointsView: View {
     
     @State var points = 0
     
+    @Binding var totalScore: Int
+    
+    @AppStorage("highscore") var highscore = 0
+    
     var body: some View {
         NavigationStack{
             VStack {
@@ -105,7 +109,7 @@ struct PointsView: View {
                             .navigationBarBackButtonHidden(true)
                     }
                     else{
-                        PassPhoneView(playernum: 1)
+                        PassPhoneView(playernum: 1, totalScore: totalScore)
                             .navigationBarBackButtonHidden(true)
                     }
                 } label: {
@@ -131,14 +135,21 @@ struct PointsView: View {
             if guess <= random + 10 && guess >= random - 10 {
                 if guess <= random + 5 && guess >= random - 5 {
                     points += 3
+                    totalScore += 3
                 }
                 else {
                     points += 2
+                    totalScore += 2
                 }
             }
             else {
                 points += 1
+                totalScore += 1
             }
+        }
+        
+        if totalScore > highscore {
+            highscore = totalScore
         }
 
     }
@@ -146,5 +157,5 @@ struct PointsView: View {
 }
 
 #Preview {
-    PointsView(guess: 74.0, random: 45.0, playerNum: 2, prompts: Prompts(), offset: 0.0)
+    PointsView(guess: 74.0, random: 45.0, playerNum: 2, prompts: Prompts(), offset: 0.0, totalScore: .constant(0))
 }

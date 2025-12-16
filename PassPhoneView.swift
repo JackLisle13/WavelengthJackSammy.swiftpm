@@ -11,6 +11,8 @@ struct PassPhoneView: View {
     
     var playernum: Int
     
+    @State var totalScore = 0
+    
     var body: some View {
 
         VStack{

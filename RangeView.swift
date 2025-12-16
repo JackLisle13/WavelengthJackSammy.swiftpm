@@ -9,6 +9,8 @@ import SwiftUI
 
 struct RangeView: View {
     
+    @State var totalScore = 0
+    
     @State var playerNum: Int
     @State var prompts = Prompts()
     
@@ -95,7 +97,7 @@ struct RangeView: View {
                 }
                 
                 NavigationLink() {
-                    GuessView(random: random, playerNum: 2, prompts: prompts, offset: offset)
+                    GuessView(random: random, playerNum: 2, prompts: prompts, offset: offset, totalScore: $totalScore)
                         .navigationBarBackButtonHidden(true)
                 } label: {
                     Text("Ready")

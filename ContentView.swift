@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var highscore = 0
+    @AppStorage("highscore") var highscore = 0
     
     var body: some View {
         NavigationStack {

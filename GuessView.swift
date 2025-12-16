@@ -19,7 +19,7 @@ struct GuessView: View {
     
     @State var offset: Double
     
-    @Environment(\.dismiss) var dismiss
+    @Binding var totalScore: Int
     
     var body: some View {
         NavigationStack {
@@ -47,7 +47,7 @@ struct GuessView: View {
                 }
                 
                 NavigationLink() {
-                    PointsView(guess: guess, random: random, playerNum: playerNum, prompts: prompts, offset: offset)
+                    PointsView(guess: guess, random: random, playerNum: playerNum, prompts: prompts, offset: offset, totalScore: $totalScore)
                         .navigationBarBackButtonHidden(true)
                     
                 } label: {
@@ -66,5 +66,5 @@ struct GuessView: View {
 }
 
 #Preview {
-    GuessView(random: 74.0, playerNum: 2, prompts: Prompts(), offset: 0.0)
+    GuessView(random: 74.0, playerNum: 2, prompts: Prompts(), offset: 0.0, totalScore: .constant(0))
 }
