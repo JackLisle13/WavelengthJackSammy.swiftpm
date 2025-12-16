@@ -21,8 +21,9 @@ struct PointsView: View {
     
     @State var points = 0
     
+    @Binding var path: NavigationPath
+    
     var body: some View {
-        NavigationStack{
             VStack {
                 Spacer()
                 
@@ -101,11 +102,11 @@ struct PointsView: View {
                 
                 NavigationLink {
                     if (playerNum == 1){
-                        PassPhoneView(playernum: 2)
+                        PassPhoneView(playernum: 2, path: $path)
                             .navigationBarBackButtonHidden(true)
                     }
                     else{
-                        PassPhoneView(playernum: 1)
+                        PassPhoneView(playernum: 1, path: $path)
                             .navigationBarBackButtonHidden(true)
                     }
                 } label: {
@@ -118,7 +119,6 @@ struct PointsView: View {
                         .bold()
                 }
             }
-        }
         
         .onAppear() {
             getPoints()
@@ -146,5 +146,5 @@ struct PointsView: View {
 }
 
 #Preview {
-    PointsView(guess: 74.0, random: 45.0, playerNum: 2, prompts: Prompts(), offset: 0.0)
+    PointsView(guess: 74.0, random: 45.0, playerNum: 2, prompts: Prompts(), offset: 0.0, path: .constant(NavigationPath()))
 }

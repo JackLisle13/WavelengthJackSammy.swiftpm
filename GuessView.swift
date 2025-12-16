@@ -19,10 +19,11 @@ struct GuessView: View {
     
     @State var offset: Double
     
+    @Binding var path: NavigationPath
+    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        NavigationStack {
             VStack {
                 
                 Text("Player \(playerNum)")
@@ -47,7 +48,7 @@ struct GuessView: View {
                 }
                 
                 NavigationLink() {
-                    PointsView(guess: guess, random: random, playerNum: playerNum, prompts: prompts, offset: offset)
+                    PointsView(guess: guess, random: random, playerNum: playerNum, prompts: prompts, offset: offset, path: $path)
                         .navigationBarBackButtonHidden(true)
                     
                 } label: {
@@ -60,11 +61,10 @@ struct GuessView: View {
                 }
                 
             }
-        }
         
     }
 }
 
 #Preview {
-    GuessView(random: 74.0, playerNum: 2, prompts: Prompts(), offset: 0.0)
+    GuessView(random: 74.0, playerNum: 2, prompts: Prompts(), offset: 0.0, path: .constant(NavigationPath()))
 }

@@ -3,9 +3,10 @@ import SwiftUI
 struct ContentView: View {
     
     @State var highscore = 0
+    @State private var path = NavigationPath()
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path){//looked up path thing
             VStack {
                 Spacer()
                 
@@ -17,7 +18,7 @@ struct ContentView: View {
                 
                 
                 NavigationLink {
-                    PassPhoneView(playernum: 1)
+                    PassPhoneView(playernum: 1, path: $path)
                         .navigationBarBackButtonHidden(true)
                 } label: {
                     Text("Start Game")
