@@ -22,75 +22,102 @@ struct PointsView: View {
     @State var points = 0
     
     var body: some View {
-        VStack {
-            Text("Player \(playerNum)")
-                .font(.largeTitle)
-                .bold()
-                .foregroundStyle(.cyan)
-            
-            //START FOR OTHER GUESS THING, WE WILL GO BACK IF WE HAVE TIME
-            //            ZStack {
-            //                Circle()
-            //                    .stroke(.cyan, lineWidth: 15)
-            //
-            //                Rectangle()
-            //                    .foregroundStyle(.white)
-            //                    .offset(x: 0, y: 340)
-            //
-            //                Rectangle()
-            //                    .foregroundStyle(.cyan)
-            //                    .frame(height: 16)
-            //            }
-            
-            ZStack{
+        NavigationStack{
+            VStack {
+                Spacer()
                 
-                Slider(value: $guess, in: 0...100)
-                    .disabled(true)
-                
-                HStack{
-                    Rectangle()
-                        .frame(width: 30, height: 30)
-                        .foregroundStyle(Color(red: 0.8, green: 0.3, blue: 0.0, opacity: 0.4))
-                        .padding(-10)
-                    Rectangle()
-                        .frame(width: 30, height: 30)
-                        .foregroundStyle(Color(red: 0.8, green: 0.7, blue: 0.0, opacity: 0.4))
-                    Rectangle()
-                        .frame(width: 30, height: 30)
-                        .foregroundStyle(Color(red: 0.2, green: 0.8, blue: 0.1, opacity: 0.4))
-                        .padding(-10)
-                    Rectangle()
-                        .frame(width: 30, height: 30)
-                        .foregroundStyle(Color(red: 0.8, green: 0.7, blue: 0.0, opacity: 0.4))
-                    Rectangle()
-                        .frame(width: 30, height: 30)
-                        .foregroundStyle(Color(red: 0.8, green: 0.3, blue: 0.0, opacity: 0.4))
-                        .padding(-10)
-                }
-                .offset(x: offset)
-                
-                
-            }
-            
-            HStack{
-                Text("\(prompts.randomArray[0])")
+                Text("Player \(playerNum)")
+                    .font(.largeTitle)
                     .bold()
                     .foregroundStyle(.cyan)
-                    .font(.title2)
+                
+                //START FOR OTHER GUESS THING, WE WILL GO BACK IF WE HAVE TIME
+                //            ZStack {
+                //                Circle()
+                //                    .stroke(.cyan, lineWidth: 15)
+                //
+                //                Rectangle()
+                //                    .foregroundStyle(.white)
+                //                    .offset(x: 0, y: 340)
+                //
+                //                Rectangle()
+                //                    .foregroundStyle(.cyan)
+                //                    .frame(height: 16)
+                //            }
+                
+                ZStack{
+                    
+                    Slider(value: $guess, in: 0...100)
+                        .disabled(true)
+                    
+                    HStack{
+                        Rectangle()
+                            .frame(width: 30, height: 30)
+                            .foregroundStyle(Color(red: 0.8, green: 0.3, blue: 0.0, opacity: 0.4))
+                            .padding(-10)
+                        Rectangle()
+                            .frame(width: 30, height: 30)
+                            .foregroundStyle(Color(red: 0.8, green: 0.7, blue: 0.0, opacity: 0.4))
+                        Rectangle()
+                            .frame(width: 30, height: 30)
+                            .foregroundStyle(Color(red: 0.2, green: 0.8, blue: 0.1, opacity: 0.4))
+                            .padding(-10)
+                        Rectangle()
+                            .frame(width: 30, height: 30)
+                            .foregroundStyle(Color(red: 0.8, green: 0.7, blue: 0.0, opacity: 0.4))
+                        Rectangle()
+                            .frame(width: 30, height: 30)
+                            .foregroundStyle(Color(red: 0.8, green: 0.3, blue: 0.0, opacity: 0.4))
+                            .padding(-10)
+                    }
+                    .offset(x: offset)
+                    
+                    
+                    
+                }
+                
+                
+                HStack{
+                    Text("\(prompts.randomArray[0])")
+                        .bold()
+                        .foregroundStyle(.cyan)
+                        .font(.title2)
+                    
+                    Spacer()
+                    
+                    Text("\(prompts.randomArray[1])")
+                        .bold()
+                        .foregroundStyle(.cyan)
+                        .font(.title2)
+                }
+                
+                Text("You got \(points) points")
+                    .font(.title)
+                    .foregroundStyle(.cyan)
+                    .bold()
+                
                 
                 Spacer()
                 
-                Text("\(prompts.randomArray[1])")
-                    .bold()
-                    .foregroundStyle(.cyan)
-                    .font(.title2)
+                NavigationLink {
+                    if (playerNum == 1){
+                        PassPhoneView(playernum: 2)
+                            .navigationBarBackButtonHidden(true)
+                    }
+                    else{
+                        PassPhoneView(playernum: 1)
+                            .navigationBarBackButtonHidden(true)
+                    }
+                } label: {
+                    Text("Next Question")
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .padding(10)
+                        .background(.cyan)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                        .bold()
+                }
             }
-            
-            Text("You got \(points) points")
-                .font(.title)
-                .foregroundStyle(.cyan)
-                .bold()
-            
         }
         
         .onAppear() {
