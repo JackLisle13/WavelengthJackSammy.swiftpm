@@ -3,7 +3,7 @@ import SwiftUI
 struct ContentView: View {
     
     @AppStorage("highscore") var highscore = 0
-    @State var highscore = 0
+    
     @State private var path = NavigationPath()
     
     var body: some View {

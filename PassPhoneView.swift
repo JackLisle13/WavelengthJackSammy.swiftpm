@@ -28,7 +28,7 @@ struct PassPhoneView: View {
                     .padding(.bottom, 20)
 
                 NavigationLink {
-                    RangeView(playerNum: playernum, path: $path)
+                    RangeView(playerNum: playernum, path: $path, totalScore: totalScore)
                         .navigationBarBackButtonHidden(true)
                 } label: {
                     Text("Ready")

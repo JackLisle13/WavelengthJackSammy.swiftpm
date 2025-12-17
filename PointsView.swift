@@ -23,6 +23,10 @@ struct PointsView: View {
     
     @Binding var path: NavigationPath
     
+    @AppStorage("highscore") var highscore = 0
+    
+    @Binding var totalScore: Int
+    
     var body: some View {
             VStack {
                 Spacer()
@@ -102,11 +106,11 @@ struct PointsView: View {
                 
                 NavigationLink {
                     if (playerNum == 1){
-                        PassPhoneView(playernum: 2, path: $path)
+                        PassPhoneView(playernum: 2, path: $path, totalScore: totalScore)
                             .navigationBarBackButtonHidden(true)
                     }
                     else{
-                        PassPhoneView(playernum: 1, path: $path)
+                        PassPhoneView(playernum: 1, path: $path, totalScore: totalScore)
                             .navigationBarBackButtonHidden(true)
                     }
                 } label: {
@@ -153,5 +157,5 @@ struct PointsView: View {
 }
 
 #Preview {
-    PointsView(guess: 74.0, random: 45.0, playerNum: 2, prompts: Prompts(), offset: 0.0, path: .constant(NavigationPath()))
+    PointsView(guess: 74.0, random: 45.0, playerNum: 2, prompts: Prompts(), offset: 0.0, path: .constant(NavigationPath()), totalScore: .constant(0))
 }

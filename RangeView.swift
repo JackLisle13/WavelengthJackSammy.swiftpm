@@ -9,18 +9,19 @@ import SwiftUI
 
 struct RangeView: View {
     
-    @State var totalScore = 0
-    
     @State var playerNum: Int
     @State var prompts = Prompts()
     
     @State var random: Double
     @State var offset: Double
     @Binding var path: NavigationPath
+    
+    @State var totalScore: Int
 
-    init(playerNum: Int, path: Binding<NavigationPath>) {
+    init(playerNum: Int, path: Binding<NavigationPath>, totalScore: Int) {
             _playerNum = State(initialValue: playerNum) //looked up
         _path = path
+        _totalScore = State(initialValue: totalScore)
 
         let rand = Double.random(in: 0...100)
            _random = State(initialValue: rand)//looked up
@@ -99,7 +100,7 @@ struct RangeView: View {
                 }
                 
                 NavigationLink() {
-                    GuessView(random: random, playerNum: 2, prompts: prompts, offset: offset, path: $path)
+                    GuessView(random: random, playerNum: 2, prompts: prompts, offset: offset, path: $path, totalScore: $totalScore)
                         .navigationBarBackButtonHidden(true)
                 } label: {
                     Text("Ready")
@@ -119,5 +120,5 @@ struct RangeView: View {
 }
 
 #Preview {
-    RangeView(playerNum: 1, path: .constant(NavigationPath()))
+    RangeView(playerNum: 1, path: .constant(NavigationPath()), totalScore: 0)
 }
