@@ -11,7 +11,6 @@ struct PassPhoneView: View {
 
     var playernum: Int
     @Binding var path: NavigationPath
-
     
     @State var totalScore = 0
     

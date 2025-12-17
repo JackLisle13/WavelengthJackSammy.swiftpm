@@ -101,18 +101,17 @@ struct PointsView: View {
                     .foregroundStyle(.cyan)
                     .bold()
                 
+                Text("Your current score is \(totalScore)")
+                    .font(.title)
+                    .foregroundStyle(.cyan)
+                    .bold()
+                
                 
                 Spacer()
                 
                 NavigationLink {
-                    if (playerNum == 1){
-                        PassPhoneView(playernum: 2, path: $path, totalScore: totalScore)
-                            .navigationBarBackButtonHidden(true)
-                    }
-                    else{
-                        PassPhoneView(playernum: 1, path: $path, totalScore: totalScore)
-                            .navigationBarBackButtonHidden(true)
-                    }
+                    PassPhoneView(playernum: playerNum, path: $path, totalScore: totalScore)
+                        .navigationBarBackButtonHidden(true)
                 } label: {
                     Text("Next Question")
                         .font(.title)

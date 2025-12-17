@@ -100,8 +100,14 @@ struct RangeView: View {
                 }
                 
                 NavigationLink() {
-                    GuessView(random: random, playerNum: 2, prompts: prompts, offset: offset, path: $path, totalScore: $totalScore)
-                        .navigationBarBackButtonHidden(true)
+                    if playerNum == 1 {
+                        GuessView(random: random, playerNum: 2, prompts: prompts, offset: offset, path: $path, totalScore: $totalScore)
+                            .navigationBarBackButtonHidden(true)
+                    } else {
+                        GuessView(random: random, playerNum: 1, prompts: prompts, offset: offset, path: $path, totalScore: $totalScore)
+                            .navigationBarBackButtonHidden(true)
+                    }
+                    
                 } label: {
                     Text("Ready")
                         .font(.title)
