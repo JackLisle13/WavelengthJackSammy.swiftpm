@@ -96,12 +96,12 @@ struct PointsView: View {
                         .font(.title2)
                 }
                 
-                Text("You got \(points) points")
+                Text("You got \(points) point(s)")
                     .font(.title)
                     .foregroundStyle(.cyan)
                     .bold()
                 
-                Text("Your current score is \(totalScore)")
+                Text("Current Score: \(totalScore)")
                     .font(.title)
                     .foregroundStyle(.cyan)
                     .bold()
@@ -110,7 +110,13 @@ struct PointsView: View {
                 Spacer()
                 
                 Button {
-                    path.append("passPhone") 
+                    if playerNum == 1{
+                        playerNum = 2
+                    }
+                    else{
+                        playerNum = 1
+                    }
+                    path.append("passPhone")
 //                    PassPhoneView(playernum: playerNum, path: $path, totalScore: totalScore)
 //                        .navigationBarBackButtonHidden(true)
                 } label: {

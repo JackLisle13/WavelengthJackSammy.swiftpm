@@ -1,11 +1,16 @@
 import SwiftUI
 
+//struct PassPhoneRoute: Hashable {
+//    let playerNum: Int
+//}
+
 struct ContentView: View {
     
     @AppStorage("highscore") var highscore = 0
     
     @State private var path = NavigationPath()
     @State private var totalScore = 0
+    @State var playerNum = 1
 
     
     var body: some View {
@@ -24,6 +29,7 @@ struct ContentView: View {
                     path.append("passPhone")
 //                    PassPhoneView(playernum: 1, path: $path)
 //                        .navigationBarBackButtonHidden(true)
+                    
                 } label: {
                     Text("Start Game")
                         .font(.title)
@@ -41,14 +47,26 @@ struct ContentView: View {
                     .foregroundStyle(.cyan)
                     .bold()
             } //looked up nav destinations below, its a lot but I spent so long on it and it wasnt working
+//            .navigationDestination(for: PassPhoneRoute.self) { route in
+//                if (route == "passPhone"){
+//                    PassPhoneView(playernum: route.playerNum, path: $path)
+//                        .navigationBarBackButtonHidden(true)
+//                }
+//            }
             .navigationDestination(for: String.self) { route in
                           if route == "passPhone" {
-                              PassPhoneView(playernum: 1, path: $path)
+                              PassPhoneView(playernum: playerNum, path: $path)
+                                  .navigationBarBackButtonHidden(true)
+                              
+
                           }
                       }
                       .navigationDestination(for: RangeRoute.self) { route in
                           RangeView(playerNum: route.playerNum, path: $path, totalScore: totalScore)
+                              .navigationBarBackButtonHidden(true)
+
                       }
+
                       .navigationDestination(for: RangeToGuessRoute.self) { route in
                           GuessView(random: route.random,
                                     playerNum: route.playerNum,
@@ -56,7 +74,10 @@ struct ContentView: View {
                                     offset: route.offset,
                                     path: $path,
                                     totalScore: $totalScore)
+                          .navigationBarBackButtonHidden(true)
+
                       }
+
                       .navigationDestination(for: GuessToPointsRoute.self) { route in
                           PointsView(guess: route.guess,
                                      random: route.random,
@@ -65,7 +86,10 @@ struct ContentView: View {
                                      offset: route.offset,
                                      path: $path,
                                      totalScore: $totalScore)
+                          .navigationBarBackButtonHidden(true)
+
                       }
+
                   }
               }
           }

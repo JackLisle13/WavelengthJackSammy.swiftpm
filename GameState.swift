@@ -8,6 +8,6 @@
 import Foundation
 
 class GameState: ObservableObject {
-    @Published var totalScore = 0
     @Published var playerNum = 1
+
 }
