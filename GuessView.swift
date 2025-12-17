@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+struct GuessToPointsRoute: Hashable {
+    let guess: Double
+    let random: Double
+    let playerNum: Int
+    let prompts: Prompts
+    let offset: Double
+  // let totalScore: Int
+}
+
 struct GuessView: View {
     
     @State var random: Double
@@ -49,9 +58,16 @@ struct GuessView: View {
                         .font(.title2)
                 }
                 
-                NavigationLink() {
-                    PointsView(guess: guess, random: random, playerNum: playerNum, prompts: prompts, offset: offset, path: $path, totalScore: $totalScore)
-                        .navigationBarBackButtonHidden(true)
+                Button {
+                    path.append(GuessToPointsRoute(
+                                       guess: guess,
+                                       random: random,
+                                       playerNum: playerNum,
+                                       prompts: prompts,
+                                       offset: offset
+                                   ))
+//                    PointsView(guess: guess, random: random, playerNum: playerNum, prompts: prompts, offset: offset, path: $path, totalScore: $totalScore)
+//                        .navigationBarBackButtonHidden(true)
                     
                 } label: {
                     Text("Submit")

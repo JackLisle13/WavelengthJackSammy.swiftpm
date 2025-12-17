@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+struct RangeToGuessRoute: Hashable {
+    let random: Double
+    let playerNum: Int
+    let prompts: Prompts
+    let offset: Double
+   // let totalScore: Int
+}
+
 struct RangeView: View {
     
     @State var playerNum: Int
@@ -16,12 +24,12 @@ struct RangeView: View {
     @State var offset: Double
     @Binding var path: NavigationPath
     
-    @State var totalScore: Int
+   // @State var totalScore: Int
 
     init(playerNum: Int, path: Binding<NavigationPath>, totalScore: Int) {
             _playerNum = State(initialValue: playerNum) //looked up
         _path = path
-        _totalScore = State(initialValue: totalScore)
+     //   _totalScore = State(initialValue: totalScore)
 
         let rand = Double.random(in: 0...100)
            _random = State(initialValue: rand)//looked up
@@ -99,13 +107,27 @@ struct RangeView: View {
                         .font(.title2)
                 }
                 
-                NavigationLink() {
+                Button {
                     if playerNum == 1 {
-                        GuessView(random: random, playerNum: 2, prompts: prompts, offset: offset, path: $path, totalScore: $totalScore)
-                            .navigationBarBackButtonHidden(true)
+                        path.append(RangeToGuessRoute(
+                                            random: random,
+                                            playerNum: 2,
+                                            prompts: prompts,
+                                            offset: offset,
+                                            //totalScore: totalScore
+                                        ))
+//                        GuessView(random: random, playerNum: 2, prompts: prompts, offset: offset, path: $path, totalScore: $totalScore)
+//                            .navigationBarBackButtonHidden(true)
                     } else {
-                        GuessView(random: random, playerNum: 1, prompts: prompts, offset: offset, path: $path, totalScore: $totalScore)
-                            .navigationBarBackButtonHidden(true)
+                        path.append(RangeToGuessRoute(
+                                            random: random,
+                                            playerNum: 1,
+                                            prompts: prompts,
+                                            offset: offset,
+                                            //totalScore: totalScore
+                                        ))
+//                        GuessView(random: random, playerNum: 1, prompts: prompts, offset: offset, path: $path, totalScore: $totalScore)
+//                            .navigationBarBackButtonHidden(true)
                     }
                     
                 } label: {

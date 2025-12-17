@@ -7,12 +7,17 @@
 
 import SwiftUI
 
+struct RangeRoute: Hashable {
+    let playerNum: Int
+   // let totalScore: Int
+}//looked up 
+
 struct PassPhoneView: View {
 
     var playernum: Int
     @Binding var path: NavigationPath
     
-    @State var totalScore = 0
+   // @State var totalScore = 0
     
     var body: some View {
 
@@ -26,9 +31,10 @@ struct PassPhoneView: View {
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 20)
 
-                NavigationLink {
-                    RangeView(playerNum: playernum, path: $path, totalScore: totalScore)
-                        .navigationBarBackButtonHidden(true)
+                Button {
+                    path.append(RangeRoute(playerNum: playernum))
+//                    RangeView(playerNum: playernum, path: $path, totalScore: totalScore)
+//                        .navigationBarBackButtonHidden(true)
                 } label: {
                     Text("Ready")
                         .font(.title)
@@ -42,18 +48,7 @@ struct PassPhoneView: View {
                 Spacer()
                 
                 
-                Button{
-                    path = NavigationPath()
-                    
-                }label:{
-                    Text("End Game")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding(10)
-                        .background(.cyan)
-                        .clipShape(RoundedRectangle(cornerRadius: 5))
-                        .bold()
-                }
+               
 
             }
 

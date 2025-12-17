@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Prompts{
+class Prompts: Equatable, Hashable{
     
     
     //first ones go on the left, second go on the right
@@ -66,6 +66,12 @@ class Prompts{
         return prompts[n]
     }
     
+    static func == (lhs: Prompts, rhs: Prompts) -> Bool {
+           return lhs.randomArray == rhs.randomArray
+       }//looked up to conform to equatable
     
+    func hash(into hasher: inout Hasher) {
+            hasher.combine(randomArray)
+        }//looked up to make it hashable
     
 }

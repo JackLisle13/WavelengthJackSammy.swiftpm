@@ -109,12 +109,27 @@ struct PointsView: View {
                 
                 Spacer()
                 
-                NavigationLink {
-                    PassPhoneView(playernum: playerNum, path: $path, totalScore: totalScore)
-                        .navigationBarBackButtonHidden(true)
+                Button {
+                    path.append("passPhone") 
+//                    PassPhoneView(playernum: playerNum, path: $path, totalScore: totalScore)
+//                        .navigationBarBackButtonHidden(true)
                 } label: {
                     Text("Next Question")
                         .font(.title)
+                        .foregroundColor(.white)
+                        .padding(10)
+                        .background(.cyan)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                        .bold()
+                }
+                
+                 Button{
+                     totalScore = 0
+                    path = NavigationPath()
+                    
+                }label:{
+                    Text("End Game")
+                        .font(.headline)
                         .foregroundColor(.white)
                         .padding(10)
                         .background(.cyan)
